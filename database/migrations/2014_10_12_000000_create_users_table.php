@@ -17,9 +17,10 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->date('birth_date');
-            $table->enum('sex', ['male', 'female']);
+            $table->date('birth_date')->nullable();
+            $table->enum('sex', ['male', 'female', 'none'])->default('none');
             $table->integer('role_id');
+            $table->string('login');
             $table->string('password');
             $table->timestamps();
         });

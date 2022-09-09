@@ -1,4 +1,5 @@
 import routes from "./routes.js";
+import store from "./store/store.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
@@ -7,6 +8,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
         routes
     });
 
+    const storeInstance = Vuex.createStore(store);
+
     window.VueApplication = Vue.createApp({
         name: 'Application',
         data() {
@@ -14,11 +17,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
             }
         },
-        mounted() {
-            console.log('created')
+        created() {
+            this.$store.dispatch('UserAuthorize');
         },
         methods: {
-
+            logout() {
+                this.$store.dispatch('logout');
+            }
         }
-    }).use(router).mount('#app');
+    }).use(router).use(storeInstance).mount('#app');
 });

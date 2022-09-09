@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('main');
 });
+
+
+Route::middleware('auth')->group(function() {
+    Route::get('/api/me', [\App\Http\Controllers\UserController::class, 'getMe']);
+    Route::get('/logout', function() {
+        \Illuminate\Support\Facades\Auth::logout();
+    });
+});
+
+Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);
+Route::post('/register', [\App\Http\Controllers\UserController::class, 'register']);
+
