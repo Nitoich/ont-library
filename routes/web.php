@@ -21,6 +21,9 @@ Route::middleware('auth')->group(function() {
     Route::get('/logout', function() {
         \Illuminate\Support\Facades\Auth::logout();
     });
+
+    Route::get('/api/lecture', [\App\Http\Controllers\LectureController::class, 'get']);
+    Route::post('/api/lecture', [\App\Http\Controllers\LectureController::class, 'add']);
 });
 
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);

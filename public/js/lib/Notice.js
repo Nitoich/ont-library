@@ -16,18 +16,27 @@ class NoticeClass {
             <p>${options.body}</p>
         </div>
         `;
-        newNotice.style.cssText = `box-sizing: border-box; padding: 10px; background: #FFFFFF; border: 3px solid black; transition: 1s;`;
+        newNotice.style.cssText = `user-select: none;cursor: pointer;box-sizing: border-box; padding: 10px; background: #FFFFFF; border: 3px solid black; transition: 1s;`;
         setTimeout(() => {
             console.log('123')
             newNotice.style.transform = 'translateX(-110%)'
         }, 200);
 
-        setTimeout(() => {
+        let removeTimeout = setTimeout(() => {
             newNotice.style.transform = 'translateX(0)';
             setTimeout(() => {
                 newNotice.remove();
             }, 1100)
         }, 10000);
+
+        newNotice.addEventListener('click', () => {
+            clearTimeout(removeTimeout);
+            newNotice.style.transform = 'translateX(0)';
+            setTimeout(() => {
+                newNotice.remove();
+            }, 1100)
+        })
+
         this.#rootElement.append(newNotice);
     }
 }

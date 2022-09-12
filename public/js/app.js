@@ -1,6 +1,8 @@
 import routes from "./routes.js";
 import store from "./store/store.js";
 import Notice from "./lib/Notice.js";
+import login from "./components/pages/login.js";
+import register from "./components/pages/register.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
@@ -30,6 +32,10 @@ window.addEventListener('DOMContentLoaded', (event) => {
             logout() {
                 this.$store.dispatch('logout');
             }
+        },
+        components: {
+            'login-page': login,
+            'register-page': register
         }
     }).use(router).use(storeInstance).mount('#app');
 });

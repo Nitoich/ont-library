@@ -3,15 +3,33 @@
 @section('PageTitle') MainPage @endsection
 
 @section('content')
-    <div style="display: flex; gap: 20px;">
-        <router-link to="/">Main</router-link>
-        <router-link to="/about">About</router-link>
-        <router-link to="/login" v-if="!this.$store.getters.authUser">Login</router-link>
-        <router-link to="/register" v-if="!this.$store.getters.authUser">Register</router-link>
-        <router-link to="/profile" v-if="this.$store.getters.authUser">Profile</router-link>
-        <router-link to="/" @click="this.logout" v-if="this.$store.getters.authUser">Logout</router-link>
-    </div>
+    <login-page v-if="!this.$store.getters.authUser"></login-page>
+    <register-page v-if="!this.$store.getters.authUser"></register-page>
+    <template v-if="this.$store.getters.authUser">
+        <header>
+            <div class="wrapper">
+                <ul class="navigation__list">
+                    <li class="navigation__item">
+                        <router-link to="/">Home</router-link>
+                    </li>
+                    <li class="navigation__item">
+                        <router-link to="/profile">Profile</router-link>
+                    </li>
+                    <li class="navigation__item">
+                        <router-link to="/lecture">Lecture</router-link>
+                    </li>
+                    <li class="navigation__item">
+                        <router-link to="/tests">Tests</router-link>
+                    </li>
+                    <li class="navigation__item">
+                        <router-link to="/logout" @click="this.logout">Logout</router-link>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="wrapper">
+            <router-view></router-view>
+        </div>
+    </template>
 
-
-    <router-view></router-view>
 @endsection

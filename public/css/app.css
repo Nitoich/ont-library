@@ -2,3 +2,37 @@
     margin: 0;
     padding: 0;
 }
+
+header {
+    background: #4796b4;
+    color: #ffffff;
+}
+
+header .navigation__list {
+    list-style: none;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    height: 40px;
+}
+
+header .navigation__list .navigation__item a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    color: white;
+    text-decoration: none;
+    padding: 0 10px;
+    transition: 0.5s;
+}
+header .navigation__list .navigation__item a.router-link-active {
+    background: #77b8cd;
+}
+
+.wrapper {
+    width: 60%;
+    margin: 0 auto;
+}

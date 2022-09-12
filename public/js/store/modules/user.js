@@ -1,3 +1,5 @@
+import Notice from "../../lib/Notice.js";
+
 export default {
     state: {
         currentUser: undefined
@@ -31,6 +33,10 @@ export default {
                 .then(res => {
                     console.log(res)
                     context.state.currentUser = undefined;
+                    Notice.createNotice({
+                        title: 'Успех!',
+                        body: 'Вы вышли из аккаунта!'
+                    });
                 })
         }
     }
