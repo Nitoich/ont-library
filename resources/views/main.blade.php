@@ -4,12 +4,12 @@
 
 @section('content')
     <div style="display: flex; gap: 20px;">
-        <a href="/#/">main</a>
-        <a href="/#/about">about</a>
-        <a v-if="!this.$store.getters.authUser" href="/#/login">login</a>
-        <a v-if="!this.$store.getters.authUser" href="/#/register">register</a>
-        <a v-if="this.$store.getters.authUser" href="/#/profile">profile</a>
-        <a @click="this.logout" v-if="this.$store.getters.authUser" href="/#/">logout</a>
+        <router-link to="/">Main</router-link>
+        <router-link to="/about">About</router-link>
+        <router-link to="/login" v-if="!this.$store.getters.authUser">Login</router-link>
+        <router-link to="/register" v-if="!this.$store.getters.authUser">Register</router-link>
+        <router-link to="/profile" v-if="this.$store.getters.authUser">Profile</router-link>
+        <router-link to="/" @click="this.logout" v-if="this.$store.getters.authUser">Logout</router-link>
     </div>
 
 

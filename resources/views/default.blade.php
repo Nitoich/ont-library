@@ -11,6 +11,7 @@
         <script src="https://unpkg.com/vue-router@4.0.15"></script>
         <script src="https://unpkg.com/vuex@4.0.0/dist/vuex.global.js"></script>
         <script src="/js/app.js" type="module"></script>
+        <link rel="stylesheet" href="/css/app.css">
         @yield('AdditionalLinks')
     </head>
     <body>

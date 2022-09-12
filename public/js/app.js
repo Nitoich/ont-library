@@ -1,7 +1,13 @@
 import routes from "./routes.js";
 import store from "./store/store.js";
+import Notice from "./lib/Notice.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
+
+    Notice.createNotice({
+        title: 'Привет!',
+        body: 'Приложение запущено!'
+    })
 
     const router = VueRouter.createRouter({
         history: VueRouter.createWebHashHistory(),

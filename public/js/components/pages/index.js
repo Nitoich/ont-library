@@ -1,7 +1,13 @@
+import Notice from "../../lib/Notice.js";
+
 export default {
     name: 'IndexPage',
     mounted() {
-        console.log(this.$store.getters.authUser);
+        // console.log(this.$store.getters.authUser);
+        Notice.createNotice({
+            title: 'Переход',
+            body: 'Вы на главной!'
+        })
     },
     template: `
 <div>
