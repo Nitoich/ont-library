@@ -47,6 +47,30 @@ export default {
                 .then(res => {
                     console.log(res)
                 })
+        },
+        deleteLecture(context, lecture) {
+            fetch(`/api/lecture/${lecture.id}`, {
+                method: 'delete',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    _token: window.csrftoken
+                })
+            })
+                .then(res => {
+                    if(res.status == 200) {
+                        context.dispatch('getLectures');
+                        Notice.createNotice({
+                            title: 'Успех!',
+                            body: 'Лекция удалена!'
+                        })
+                    } else {
+                        context.dispatch('getLecture');
+                        console.log('No delete!')
+                    }
+                })
         }
     }
 }

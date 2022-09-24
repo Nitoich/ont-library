@@ -13,6 +13,17 @@ class LectureController extends Controller
         return response()->json(Lecture::all());
     }
 
+    public function delete($id) {
+        $lecture = Lecture::where('id', $id)->first();
+
+        if($lecture) {
+            $lecture->delete();
+            return response()->json()->setStatusCode(200);
+        }
+
+        return response()->json()->setStatusCode(404);
+    }
+
     public function add(Request $request) {
         $validator = Validator::make($request->all(), [
             'title' => 'required'

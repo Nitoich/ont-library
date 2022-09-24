@@ -6,36 +6,48 @@ import register from "./components/pages/register.js";
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
-    Notice.createNotice({
-        title: 'Привет!',
-        body: 'Приложение запущено!'
-    })
+    try {
+        const router = VueRouter.createRouter({
+            history: VueRouter.createWebHashHistory(),
+            routes
+        });
 
-    const router = VueRouter.createRouter({
-        history: VueRouter.createWebHashHistory(),
-        routes
-    });
+        const storeInstance = Vuex.createStore(store);
 
-    const storeInstance = Vuex.createStore(store);
+        window.VueApplication = Vue.createApp({
+            name: 'Application',
+            data() {
+                return {
 
-    window.VueApplication = Vue.createApp({
-        name: 'Application',
-        data() {
-            return {
-
+                }
+            },
+            created() {
+                this.$store.dispatch('UserAuthorize');
+            },
+            methods: {
+                logout() {
+                    this.$store.dispatch('logout');
+                }
+            },
+            components: {
+                'login-page': login,
+                'register-page': register
             }
-        },
-        created() {
-            this.$store.dispatch('UserAuthorize');
-        },
-        methods: {
-            logout() {
-                this.$store.dispatch('logout');
-            }
-        },
-        components: {
-            'login-page': login,
-            'register-page': register
-        }
-    }).use(router).use(storeInstance).mount('#app');
+        }).use(router).use(storeInstance).mount('#app');
+
+        Notice.createNotice({
+            title: 'Привет!',
+            body: 'Приложение запущено!'
+        })
+    } catch (err) {
+        console.log(err)
+        Notice.createNotice({
+            title: `Ошибка: ${err.name}`,
+            body: err.message
+        })
+    }
+
+
+
+
 });

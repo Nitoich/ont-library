@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function() {
 
     Route::get('/api/lecture', [\App\Http\Controllers\LectureController::class, 'get']);
     Route::post('/api/lecture', [\App\Http\Controllers\LectureController::class, 'add']);
+    Route::delete('/api/lecture/{id}', [\App\Http\Controllers\LectureController::class, 'delete']);
 });
 
 Route::post('/login', [\App\Http\Controllers\UserController::class, 'login']);

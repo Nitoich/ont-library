@@ -4,10 +4,13 @@ export default {
     name: 'SmartTable',
     data() {
         return {
-            selectedRows: [],
             actionPanel: undefined,
             items: []
         }
+    },
+    model: {
+        prop: 'selectedRows',
+        event: 'on-change'
     },
     props: {
         columns: {
@@ -36,8 +39,13 @@ export default {
         },
         originDataUrl: {
             default: false
+        },
+        selectedRows: {
+            type: Array,
+            default: []
         }
     },
+    emits: ['update:selected-rows'],
     mounted() {
         console.log(this.originDataUrl)
         if(this.originDataUrl) {
@@ -186,11 +194,11 @@ export default {
             </thead>
             <tbody>
                 <tr @contextmenu="this.disableBrowserContentMenu($event, index)" ref="TableRows" @mousedown="this.selectRow($event, index)" v-for="(row, index) in this.items" style="cursor: pointer; border-collapse: collapse; border: 2px solid rgb(127,127,127);">
-                    <th v-if="this.canSelectRow" style="padding: 0 10px; border: 1px solid #AAAAAA; background: #AAAAAA;">
+                    <th v-if="this.canSelectRow" style="padding: 0 10px; border: 1px solid #AAAAAA; background: #AAAAAA; width: 40px; box-sizing: border-box;">
                         <input type="checkbox" disabled>
                     </th>
                     <th v-html="row[key]" v-for="(column, key) in this.columns" style="padding: 10px; border: 1px solid #AAAAAA; background: rgba(200,200,200, 1)">
-                    
+
                     </th>
                 </tr>
             </tbody>
